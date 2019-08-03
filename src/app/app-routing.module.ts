@@ -6,18 +6,18 @@ import { DetailsComponent } from './details/details.component';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'form',
-    pathMatch: 'full'
-  },
-  {
+    {
     path: 'form',
     component: InputformComponent
   },
   {
     path: 'details',
     component: DetailsComponent
+  },
+  {
+    path: '',
+    redirectTo: 'form',
+    pathMatch: 'full'
   },
   {
     path: 'notfound',
