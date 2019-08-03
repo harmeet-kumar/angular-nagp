@@ -4,6 +4,7 @@ import { StudentService } from '../shared/services/student.service';
 import { MustMatch } from '../shared/validators/must-match.validator';
 import { matchKrde } from '../shared/validators/email-match.validator';
 import { Student } from '../shared/Model/student';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inputform',
@@ -17,7 +18,7 @@ export class InputformComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder, private studentService : StudentService) { }
+  constructor(private router: Router,private formBuilder: FormBuilder, private studentService : StudentService) { }
 
 
   ngOnInit() {
@@ -49,6 +50,13 @@ export class InputformComponent implements OnInit {
     student.confirmPassword = this.registerForm.value.confirmPassword;
 
     this.studentService.addValue(student);
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value));
+
+    this.registerForm.value.firstName = '';
+    this.registerForm.value.lastName = '';
+    this.registerForm.value.email = '';
+    this.registerForm.value.password = '';
+    this.registerForm.value.confirmPassword = '';
+    this.router.navigate(['/details']);
+    //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value));
   }
 }
