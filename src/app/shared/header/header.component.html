@@ -1,0 +1,29 @@
+
+<nav class="navbar navbar-dark bg-dark mb-5 bar-margin header-bar">
+        <i class="fab fa-korvue fa-2x" style="color:white"></i>
+    <a class="navbar-brand font-xl marg-left" routerLink="/">Kratos</a> 
+    <div class="navbar-expand mr-auto marg-left">
+        <div class="navbar-nav">
+            
+            <a class="nav-item nav-link font-l marg-left"   routerLink="form" [routerLinkActive]="['active']">
+                    <i class="fas fa-clipboard-list fa-m marg-left" style="color:white; margin-right: 5px;"></i>Form</a>
+            <a class="nav-item nav-link font-l marg-left"   routerLink="details" [routerLinkActive]="['active']">
+                    <i class="fas fas fa-list fa-m marg-left" style="color:white; margin-right: 5px;"></i>Details</a>
+        </div>
+    </div> 
+        <div class="navbar-expand ml-auto navbar-nav">
+            <div class="navbar-nav">
+                <div class="navbar-nav" *ngIf="loggedIn"> 
+                    <a class="nav-item nav-link" target="_blank">
+                        <i class="fas fa-user"></i>
+                        <span class="user-name">Hi User {{username}}</span>
+                    </a>
+                </div>
+                <!-- <a (click)="logOut()" *ngIf="loggedIn" routerLink='login' class="btn btn-info marg-left ">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span></span> Log out
+                </a> -->
+            </div>
+        </div>
+</nav>
+
