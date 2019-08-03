@@ -41,7 +41,7 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container mt-5\">\n    <div class=\"row cardRow\">\n\n        <div class=\"col-md-4 gridCol\" *ngFor=\"let student of studentService.students.value\">\n            <div class=\"card\" style=\"width: 18rem;background-color: white\">\n                <div class=\"card-body\">\n                    <h5 class=\"card-title\">{{student.firstName}}</h5>\n                    <h6 class=\"card-subtitle mb-2 text-muted\">Card subtitle</h6>\n                    <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the\n                        card's content.</p>\n                    <a href=\"#\" class=\"card-link\">Card link</a>\n                    <a href=\"#\" class=\"card-link\">Another link</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"container mt-5\">\n    <div class=\"row cardRow\">\n\n        <div class=\"col-md-4 gridCol\" *ngFor=\"let student of students\">\n            <div class=\"card\" style=\"width: 18rem;background-color: white\">\n                <div class=\"card-body\">\n                    <h5 class=\"card-title\">{{student.firstName}}</h5>\n                    <h6 class=\"card-subtitle mb-2 text-muted\">Card subtitle</h6>\n                    <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the\n                        card's content.</p>\n                    <a href=\"#\" class=\"card-link\">Card link</a>\n                    <a href=\"#\" class=\"card-link\">Another link</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -317,6 +317,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_services_student_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/services/student.service */ "./src/app/shared/services/student.service.ts");
 /* harmony import */ var _shared_validators_must_match_validator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/validators/must-match.validator */ "./src/app/shared/validators/must-match.validator.ts");
 /* harmony import */ var _shared_Model_student__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../shared/Model/student */ "./src/app/shared/Model/student.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
 
 
 
@@ -324,7 +326,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let InputformComponent = class InputformComponent {
-    constructor(formBuilder, studentService) {
+    constructor(router, formBuilder, studentService) {
+        this.router = router;
         this.formBuilder = formBuilder;
         this.studentService = studentService;
         this.submitted = false;
@@ -354,10 +357,17 @@ let InputformComponent = class InputformComponent {
         student.password = this.registerForm.value.password;
         student.confirmPassword = this.registerForm.value.confirmPassword;
         this.studentService.addValue(student);
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value));
+        this.registerForm.value.firstName = '';
+        this.registerForm.value.lastName = '';
+        this.registerForm.value.email = '';
+        this.registerForm.value.password = '';
+        this.registerForm.value.confirmPassword = '';
+        this.router.navigate(['/details']);
+        //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value));
     }
 };
 InputformComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] },
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
     { type: _shared_services_student_service__WEBPACK_IMPORTED_MODULE_3__["StudentService"] }
 ];
