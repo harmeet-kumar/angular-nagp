@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentService } from '../shared/services/student.service';
+import { MustMatch } from '../shared/validators/must-match.validator';
 import { matchKrde } from '../shared/validators/email-match.validator';
 import { Student } from '../shared/Model/student';
 
@@ -27,7 +28,7 @@ export class InputformComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
    }, {
-       //validators: MustMatch('password','confirmPassword')
+       validators: MustMatch('password','confirmPassword')
    });
   }
 
